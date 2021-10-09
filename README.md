@@ -6,16 +6,13 @@ project using libigl.
 
 ## See the tutorial first
 
-Install libigl
-git clone https://github.com/libigl/libigl.git
-
-Place this project right next to the libigl folder. For example, if libigl is installed in ~/foo/libigl, then you can create a copy of the this right next to it:
-git clone https://github.com/libigl/libigl-demo.git ~/foo/libigl-demo
-
-Read appleseed shaderball object
-https://github.com/appleseedhq/shaderball
-
-Extract the zip file to get the appleseed.obj
+1.Install libigl
+`git clone https://github.com/libigl/libigl.git`
+2.Place this project right next to the libigl folder. For example, if libigl is installed in `~/foo/libigl`, then you can create a copy of the this right next to it:
+`git clone https://github.com/libigl/libigl-demo.git ~/foo/libigl-demo`
+3.Read appleseed shaderball object
+`https://github.com/appleseedhq/shaderball`
+4.Extract the zip file to get the appleseed.obj
 
 
 ## Dependencies
@@ -58,4 +55,4 @@ From within the `build` directory just issue:
 A glfw app should launch displaying the obj files.
 By deafult all faces will be white in color but when you click a face it will be changed to red.
 The clicked face ID, assosciated Vertices ID and there world coordinates will be displayed on the terminal.
-It will also genrate a "faces.txt" files containing the IDs of all faces which has been selected.
+It will also genrate a `faces.txt` files containing the IDs of all faces which has been selected.
