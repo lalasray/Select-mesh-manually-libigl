@@ -6,8 +6,17 @@ project using libigl.
 
 ## See the tutorial first
 
-Then build, run and understand the [libigl
-tutorial](http://libigl.github.io/libigl/tutorial/).
+Install libigl
+git clone https://github.com/libigl/libigl.git
+
+Place this project right next to the libigl folder. For example, if libigl is installed in ~/foo/libigl, then you can create a copy of the this right next to it:
+git clone https://github.com/libigl/libigl-demo.git ~/foo/libigl-demo
+
+Read appleseed shaderball object
+https://github.com/appleseedhq/shaderball
+
+Extract the zip file to get the appleseed.obj
+
 
 ## Dependencies
 
@@ -37,10 +46,16 @@ Compile this project using the standard cmake routine:
 
 This should find and build the dependencies and create a `example_bin` binary.
 
+For ease of use you can copy the appleseed.obj file into the build folder but you can also directly reference it using terminal.
+
+
 ## Run
 
 From within the `build` directory just issue:
 
-    ./example
+    ./example appleseed.obj
 
-A glfw app should launch displaying a 3D cube.
+A glfw app should launch displaying the obj files.
+By deafult all faces will be white in color but when you click a face it will be changed to red.
+The clicked face ID, assosciated Vertices ID and there world coordinates will be displayed on the terminal.
+It will also genrate a "faces.txt" files containing the IDs of all faces which has been selected.
