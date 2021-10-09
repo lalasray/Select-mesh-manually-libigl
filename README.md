@@ -67,3 +67,11 @@ A glfw app should launch displaying the obj files.
 By deafult all faces will be white in color but when you click a face it will be changed to red.
 The clicked face ID, assosciated Vertices ID and there world coordinates will be displayed on the terminal.
 It will also genrate a `faces.txt` files containing the IDs of all faces which has been selected.
+
+## Reference
+
+This is modified version of:
+
+https://libigl.github.io/example-project/
+
+Please,Refer to it in case of any probelms with dependancies.
