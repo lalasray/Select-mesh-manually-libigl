@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
       outfile<<fid<<std::endl;
       outfile.close();
       std::cout<<"Vertices IDs are :"<<F.row(fid)<<std::endl;
-      for (int i = 0; i < 3; i++)
+      for (int i = 0; i < 2; i++)
       {
       std::cout<<"Cordinates of vertice "<<F(fid,i)<<" are :"<<V.row(F(fid,i))<<std::endl;
       }
