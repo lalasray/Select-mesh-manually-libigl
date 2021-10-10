@@ -7,18 +7,12 @@
     
 2. Optional:
 
-    Store all selected mesh faces in different OBJ and STL geometry files -> Visualize only selected mesh faces (using libigl)
+    Store all selected and unselected mesh faces in different OBJ and STL geometry files -> Visualize the selected and unselected mesh faces (using libigl)
 
 
 ## Tasks (TODO)
 
 1.modify the `CMake.txt` file to generate multiple executables.
-
-2.Optional:
-
-    Store all unselected mesh faces in different OBJ and STL geometry files -> Visualize unselected  mesh faces (using libigl)
-
-
 
 ## Steps
 
@@ -104,6 +98,10 @@ To run the optional milestone:
  From within the `build` directory just issue:
 
     ./example appleseed.obj
+    
+A glfw app should launch displaying the obj files.(optional-uncomment the associated codes in cpp file ).
+The original Face matrix, the selected face matrix and unselected face matrix will be displayed in the terminal.
+It will also genrate `selectedmesh.obj` and `selectedmesh.stl` for selected meshes and `unselectedmesh.obj` and `unselectedmesh.stl` for unselected meshes.
     
 
 

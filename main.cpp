@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
   // Mesh with per-face color
   Eigen::MatrixXd V, C;
   Eigen::MatrixXi F;
-  // Load a mesh in OFF format
+  // Load a mesh in OBJ format
   igl::readOBJ(argv[1], V, F);
   
   Eigen::MatrixXd sV;
