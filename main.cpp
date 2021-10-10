@@ -1,4 +1,6 @@
 #include <igl/readOBJ.h>
+#include <igl/writeOBJ.h>
+#include <igl/writeSTL.h>
 #include <igl/opengl/glfw/Viewer.h>
 #include <igl/unproject_onto_mesh.h>
 #include <iostream>
@@ -10,8 +12,11 @@ int main(int argc, char *argv[])
   // Mesh with per-face color
   Eigen::MatrixXd V, C;
   Eigen::MatrixXi F;
-  // Load a mesh in OBJ format
+  // Load a mesh in OFF format
   igl::readOBJ(argv[1], V, F);
+  
+  Eigen::MatrixXd sV;
+  Eigen::MatrixXi sF;
   
   
 /*
@@ -37,16 +42,13 @@ int main(int argc, char *argv[])
       // paint hit red
       C.row(fid)<<1,0,0;
       viewer.data().set_colors(C);
-      // Print face ID and store in the txt file
       std::cout<<"Selected Face ID is :"<<fid<<std::endl;
       std::ofstream outfile ("face.txt", std::ios_base::app);
       outfile<<fid<<std::endl;
       outfile.close();
-      // print vertices IDs
       std::cout<<"Vertices IDs are :"<<F.row(fid)<<std::endl;
       for (int i = 0; i < 2; i++)
       {
-      //print coordinates of the vertice
       std::cout<<"Cordinates of vertice "<<F(fid,i)<<" are :"<<V.row(F(fid,i))<<std::endl;
       }
       
