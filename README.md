@@ -1,17 +1,35 @@
-# libigl example project
+# libigl-demo project
+Tasks
 
-A blank project example showing how to use libigl and cmake. Feel free and
-encouraged to copy or fork this project as a way of starting a new personal
-project using libigl.
+Minimal(done):
+    
+    Build libigl -> Enable reading geometry in OBJ file format -> Read appleseed shaderball object -> Visualize shaderball object (using libigl) -> Allow selecting mesh faces by clicking on them -> For each selected face: assign color, print face ID, vertices IDs, vertices coordinates in terminal -> Store all selected face IDs in a file.
+    
+Optional(TODO):
 
-## See the tutorial first
+    Store all selected and unselected mesh faces in different OBJ and STL geometry files -> Visualize only selected and unselected  mesh faces (using libigl)
+
+## Steps
 
 1.Install libigl
-`git clone https://github.com/libigl/libigl.git`
+
+```
+git clone https://github.com/libigl/libigl.git
+```
+
 2.Place this project right next to the libigl folder. For example, if libigl is installed in `~/foo/libigl`, then you can create a copy of the this right next to it:
-`git clone https://github.com/libigl/libigl-demo.git ~/foo/libigl-demo`
+
+```
+git clone https://github.com/libigl/libigl-demo.git ~/foo/libigl-demo
+```
+
 3.Read appleseed shaderball object
-`https://github.com/appleseedhq/shaderball`
+
+```
+git clone https://github.com/appleseedhq/shaderball
+
+```
+
 4.Extract the zip file to get the appleseed.obj
 
 
@@ -56,3 +74,11 @@ A glfw app should launch displaying the obj files.
 By deafult all faces will be white in color but when you click a face it will be changed to red.
 The clicked face ID, assosciated Vertices ID and there world coordinates will be displayed on the terminal.
 It will also genrate a `faces.txt` files containing the IDs of all faces which has been selected.
+
+## Reference
+
+This is modified version of:
+
+https://libigl.github.io/example-project/
+
+Please,Refer to it in case of any probelms with dependancies.

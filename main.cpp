@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
   // Mesh with per-face color
   Eigen::MatrixXd V, C;
   Eigen::MatrixXi F;
-  // Load a mesh in OFF format
+  // Load a mesh in OBJ format
   igl::readOBJ(argv[1], V, F);
   
   
@@ -37,13 +37,16 @@ int main(int argc, char *argv[])
       // paint hit red
       C.row(fid)<<1,0,0;
       viewer.data().set_colors(C);
+      // Print face ID and store in the txt file
       std::cout<<"Selected Face ID is :"<<fid<<std::endl;
       std::ofstream outfile ("face.txt", std::ios_base::app);
       outfile<<fid<<std::endl;
       outfile.close();
+      // print vertices IDs
       std::cout<<"Vertices IDs are :"<<F.row(fid)<<std::endl;
-      for (int i = 0; i < 3; i++)
+      for (int i = 0; i < 2; i++)
       {
+      //print coordinates of the vertice
       std::cout<<"Cordinates of vertice "<<F(fid,i)<<" are :"<<V.row(F(fid,i))<<std::endl;
       }
       
