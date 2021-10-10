@@ -1,13 +1,24 @@
 # libigl-demo project
-Tasks
+## Tasks (DONE)
 
-Minimal(done):
+1. Minimal:
     
     Build libigl -> Enable reading geometry in OBJ file format -> Read appleseed shaderball object -> Visualize shaderball object (using libigl) -> Allow selecting mesh faces by clicking on them -> For each selected face: assign color, print face ID, vertices IDs, vertices coordinates in terminal -> Store all selected face IDs in a file.
     
-Optional(TODO):
+2. Optional:
 
-    Store all selected and unselected mesh faces in different OBJ and STL geometry files -> Visualize only selected and unselected  mesh faces (using libigl)
+    Store all selected and unselected mesh faces in different OBJ and STL geometry files -> Visualize only selected mesh faces (using libigl)
+
+
+## Tasks (TODO)
+
+1.modify the `CMake.txt` file to generate multiple executables.
+
+2.Optional:
+
+    Store all unselected mesh faces in different OBJ and STL geometry files -> Visualize unselected  mesh faces (using libigl)
+
+
 
 ## Steps
 
@@ -63,7 +74,6 @@ This should find and build the dependencies and create a `example_bin` binary.
 
 For ease of use you can copy the appleseed.obj file into the build folder but you can also directly reference it using terminal.
 
-
 ## Run
 
 From within the `build` directory just issue:
@@ -73,7 +83,29 @@ From within the `build` directory just issue:
 A glfw app should launch displaying the obj files.
 By deafult all faces will be white in color but when you click a face it will be changed to red.
 The clicked face ID, assosciated Vertices ID and there world coordinates will be displayed on the terminal.
-It will also genrate a `faces.txt` files containing the IDs of all faces which has been selected.
+It will also genrate a `face.txt` files containing the IDs of all faces which has been selected.
+
+To run the optional milestone:
+    
+ make sure you have genrated `face.txt` by following previous steps
+    
+ replace the `libigl-demo/main.cpp` file with `libigl-demo/optional/main.cpp` file. 
+    
+ Compile this project using the standard cmake routine:
+
+        rmdir build
+        mkdir build
+        cd build
+        cmake ..
+        make
+    
+ copy `appleseed.obj` and `face.txt`into the build folder.
+    
+ From within the `build` directory just issue:
+
+    ./example appleseed.obj
+    
+
 
 ## Reference
 
