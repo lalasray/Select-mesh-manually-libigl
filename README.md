@@ -7,7 +7,7 @@
     
 2. Optional:
 
-    Store all selected and unselected mesh faces in different OBJ and STL geometry files -> Visualize only selected mesh faces (using libigl)
+    Store all selected mesh faces in different OBJ and STL geometry files -> Visualize only selected mesh faces (using libigl)
 
 
 ## Tasks (TODO)
