@@ -10,10 +10,6 @@
     Store all selected and unselected mesh faces in different OBJ and STL geometry files -> Visualize the selected and unselected mesh faces (using libigl)
 
 
-## Tasks (TODO)
-
-1.modify the `CMake.txt` file to generate multiple executables.
-
 ## Steps
 
 1.Install libigl
@@ -77,30 +73,7 @@ From within the `build` directory just issue:
 A glfw app should launch displaying the obj files.
 By deafult all faces will be white in color but when you click a face it will be changed to red.
 The clicked face ID, assosciated Vertices ID and there world coordinates will be displayed on the terminal.
-It will also genrate a `face.txt` files containing the IDs of all faces which has been selected.
-
-To run the optional milestone:
-    
- make sure you have genrated `face.txt` by following previous steps
-    
- replace the `libigl-demo/main.cpp` file with `libigl-demo/optional/main.cpp` file. 
-    
- Compile this project using the standard cmake routine:
-
-        rmdir build
-        mkdir build
-        cd build
-        cmake ..
-        make
-    
- copy `appleseed.obj` and `face.txt`into the build folder.
-    
- From within the `build` directory just issue:
-
-    ./example appleseed.obj
-    
-A glfw app should launch displaying the obj files.(optional-uncomment the associated codes in cpp file ).
-The original Face matrix, the selected face matrix and unselected face matrix will be displayed in the terminal.
+It will also genrate a `face.txt` files containing the IDs of all faces which has been selected.The original Face matrix, the selected face matrix and unselected face matrix will be displayed in the terminal.
 It will also genrate `selectedmesh.obj` and `selectedmesh.stl` for selected meshes and `unselectedmesh.obj` and `unselectedmesh.stl` for unselected meshes.
     
 
