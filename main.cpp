@@ -6,9 +6,42 @@
 #include <iostream>
 #include <fstream>  
 
+Eigen::MatrixXd V1, V2;
+Eigen::MatrixXi F1, F2;
+
+bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier)
+{
+  std::cout<<"Key: "<<key<<" "<<(unsigned int)key<<std::endl;
+  if (key == '1')
+  {
+    
+    viewer.data().clear();
+    viewer.data().set_mesh(V1, F1);
+    viewer.core().align_camera_center(V1,F1);
+  }
+  else if (key == '2')
+  {
+    viewer.data().clear();
+    viewer.data().set_mesh(V2, F2);
+    viewer.core().align_camera_center(V2,F2);
+   }
+
+  return false;
+}
+
+void removeRow(Eigen::MatrixXi& matrix, unsigned int rowToRemove)
+{
+unsigned int numRows = matrix.rows()-1;
+unsigned int numCols = matrix.cols();
+if( rowToRemove < numRows )
+matrix.block(rowToRemove,0,numRows-rowToRemove,numCols) = matrix.block(rowToRemove+1,0,numRows-rowToRemove,numCols);
+matrix.conservativeResize(numRows,numCols);
+}
 
 int main(int argc, char *argv[])
 {
+
+
   // Mesh with per-face color
   Eigen::MatrixXd V, C;
   Eigen::MatrixXi F;
@@ -30,8 +63,9 @@ int main(int argc, char *argv[])
   // Initialize white
   C = Eigen::MatrixXd::Constant(F.rows(),3,1);
   igl::opengl::glfw::Viewer viewer;
+  viewer.callback_key_down = &key_down;
   viewer.callback_mouse_down =
-    [&V,&F,&C](igl::opengl::glfw::Viewer& viewer, int, int)->bool
+    [&V,&F,&C, &sF, &uF, &j](igl::opengl::glfw::Viewer& viewer, int, int)->bool
   {
     int fid;
     Eigen::Vector3f bc;
@@ -49,19 +83,44 @@ int main(int argc, char *argv[])
       outfile<<fid<<std::endl;
       outfile.close();
       std::cout<<"Vertices IDs are :"<<F.row(fid)<<std::endl;
-      for (int i = 0; i < 2; i++)
+      for (int i = 0; i < 3; i++)
       {
       std::cout<<"Cordinates of vertice "<<F(fid,i)<<" are :"<<V.row(F(fid,i))<<std::endl;
       }
       
+      
+      
+      sF.row(j)=F.row(fid) ;
+      j++;
+      removeRow(uF,fid);
+     for (int k = 0; k < (F.rows() -j) ; k++)
+      { 
+      unsigned int rowToRemove = sF.rows();
+      unsigned int numRows = sF.rows()-1;
+      unsigned int numCols = sF.cols();
+      if( rowToRemove < numRows )
+      sF.block(rowToRemove,0,numRows-rowToRemove,numCols) = sF.block(rowToRemove+1,0,numRows-rowToRemove,numCols);
+      sF.conservativeResize(numRows,numCols); 
+
+      }
+      std::cout << "selected:    " << std::endl << sF << std::endl;
+      std::cout << "Unselected:    " << std::endl << uF << std::endl;
+      
+      igl::writeOBJ("selectedmesh.obj", V, sF);
+      igl::writeSTL("selectedmesh.stl", V, sF);
+      igl::writeOBJ("Unselectedmesh.obj", V, uF);
+      igl::writeSTL("Unselectedmesh.stl", V, uF);
+   
+      igl::readOBJ("selectedmesh.obj", V1, F1);
+      igl::readOBJ("Unselectedmesh.obj", V2, F2);
+   
+    
       return true;
     }
     return false;
     
   };
-  std::cout<<R"(Usage:
-  [click]  Pick face on shape
-)";
+  std::cout<<R"(Usage:[click]  Pick face on shape)";
   // Show mesh
   viewer.data().set_mesh(V, F);
   viewer.data().set_colors(C);
