@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
   
   
   
-  std::cout << "Original Faces:    " << std::endl << sF << std::endl; 
+  std::cout << "Original Faces:    " << std::endl << F << std::endl; 
 /*
   Print the vertices and faces matrices
   std::cout << "Vertices: " << std::endl << V << std::endl;
@@ -111,10 +111,10 @@ int main(int argc, char *argv[])
       sF.conservativeResize(numRows,numCols); 
 
       }
-      */
+      
       std::cout << "selected:    " << std::endl << sF << std::endl;
       std::cout << "Unselected:    " << std::endl << uF << std::endl;
-      
+      */
       igl::writeOBJ("selectedmesh.obj", V, sF);
       igl::writeSTL("selectedmesh.stl", V, sF);
       igl::writeOBJ("Unselectedmesh.obj", V, uF);
