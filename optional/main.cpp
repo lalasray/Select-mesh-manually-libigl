@@ -9,12 +9,42 @@
 
 using namespace std;
 
+Eigen::MatrixXd V, V1, V2;
+Eigen::MatrixXi F, F1, F2;
+
+
+bool key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int modifier)
+{
+  std::cout<<"Key: "<<key<<" "<<(unsigned int)key<<std::endl;
+  if (key == '1')
+  {
+    // Clear should be called before drawing the mesh
+    viewer.data().clear();
+    // Draw_mesh creates or updates the vertices and faces of the displayed mesh.
+    // If a mesh is already displayed, draw_mesh returns an error if the given V and
+    // F have size different than the current ones
+    viewer.data().set_mesh(V, F);
+    viewer.core().align_camera_center(V,F);
+  }
+  else if (key == '2')
+  {
+    viewer.data().clear();
+    viewer.data().set_mesh(V1, F1);
+  }
+  else if (key == '3')
+  {
+    viewer.data().clear();
+    viewer.data().set_mesh(V2, F2);
+
+  }
+
+  return false;
+}
 
 int main (int argc, char *argv[])
 {
     using namespace Eigen;
-    Eigen::MatrixXd V;
-    Eigen::MatrixXi F;
+    
     // Load a mesh in OFF format
     igl::readOBJ(argv[1], V, F);
     int j = 0;
@@ -48,18 +78,26 @@ int main (int argc, char *argv[])
    //sF = sF(Eigen::seq(0, j), Eigen::placeholders::all);
    std::cout << "Selected Faces:    " << std::endl << sF << std::endl;
    std::cout << "Unselected Faces:    " << std::endl << uF << std::endl;
-/* 
-   //visualize the desired mesh by unselecting it. 
-   igl::opengl::glfw::Viewer viewer;
-   viewer.data().set_mesh(V, F);
-   viewer.data().set_mesh(V, sF);
-   viewer.data().set_mesh(V, uF);
-   viewer.launch();
-*/   
+
+  
    igl::writeOBJ("selectedmesh.obj", V, sF);
    igl::writeSTL("selectedmesh.stl", V, sF);
    igl::writeOBJ("Unselectedmesh.obj", V, uF);
    igl::writeSTL("Unselectedmesh.stl", V, uF);
+   
+   igl::readOBJ("selectedmesh.obj", V1, F1);
+   igl::readOBJ("Unselectedmesh.obj", V2, F2);
+   
+   std::cout<<R"(
+   1 Switch to Original mesh
+   2 Switch to Selected mesh
+   3 Switch to Unselected mesh
+   )";
+   igl::opengl::glfw::Viewer viewer;
+   viewer.callback_key_down = &key_down;
+   viewer.data().set_mesh(V, F);
+
+   viewer.launch();
    
    
    

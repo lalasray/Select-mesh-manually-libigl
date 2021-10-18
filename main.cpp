@@ -15,10 +15,12 @@ int main(int argc, char *argv[])
   // Load a mesh in OBJ format
   igl::readOBJ(argv[1], V, F);
   
-  Eigen::MatrixXd sV;
-  Eigen::MatrixXi sF;
+  int j = 0;
+  int i = 0;
+  Eigen::MatrixXi sF = F;
+  Eigen::MatrixXi uF = F;
   
-  
+  std::cout << "Original Faces:    " << std::endl << sF << std::endl; 
 /*
   Print the vertices and faces matrices
   std::cout << "Vertices: " << std::endl << V << std::endl;
@@ -56,7 +58,6 @@ int main(int argc, char *argv[])
     }
     return false;
     
-
   };
   std::cout<<R"(Usage:
   [click]  Pick face on shape
