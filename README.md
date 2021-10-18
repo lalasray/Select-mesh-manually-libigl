@@ -75,6 +75,9 @@ By deafult all faces will be white in color but when you click a face it will be
 The clicked face ID, assosciated Vertices ID and there world coordinates will be displayed on the terminal.
 It will also genrate a `face.txt` files containing the IDs of all faces which has been selected.The original Face matrix, the selected face matrix and unselected face matrix will be displayed in the terminal.
 It will also genrate `selectedmesh.obj` and `selectedmesh.stl` for selected meshes and `unselectedmesh.obj` and `unselectedmesh.stl` for unselected meshes.
+
+###To visualize the selected mesh press `keyboard "1"`
+###To visualize the unselected mesh press `keyboard "2"`
     
 
 
