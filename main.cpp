@@ -50,8 +50,11 @@ int main(int argc, char *argv[])
   
   int j = 0;
   int i = 0;
-  Eigen::MatrixXi sF = F;
+  Eigen::MatrixXi sF = Eigen::MatrixXi::Zero(F.rows(), F.cols());;
   Eigen::MatrixXi uF = F;
+ 
+  
+  
   
   std::cout << "Original Faces:    " << std::endl << sF << std::endl; 
 /*
@@ -92,7 +95,12 @@ int main(int argc, char *argv[])
       
       sF.row(j)=F.row(fid) ;
       j++;
-      removeRow(uF,fid);
+      
+      uF.row(fid)<<0,0,0;
+      
+      //removeRow(uF,fid);
+      
+     /* 
      for (int k = 0; k < (F.rows() -j) ; k++)
       { 
       unsigned int rowToRemove = sF.rows();
@@ -103,6 +111,7 @@ int main(int argc, char *argv[])
       sF.conservativeResize(numRows,numCols); 
 
       }
+      */
       std::cout << "selected:    " << std::endl << sF << std::endl;
       std::cout << "Unselected:    " << std::endl << uF << std::endl;
       
