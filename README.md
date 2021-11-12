@@ -1,4 +1,4 @@
-# libigl-demo project
+# Select mesh manually-libigl
 ## Tasks (DONE)
 
 1. Minimal:
